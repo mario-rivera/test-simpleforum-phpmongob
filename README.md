@@ -1,5 +1,7 @@
 ## Prerequsites
-I'm using [Docker](https://www.docker.com/products/docker) to deploy the application
+- I'm using [Docker](https://www.docker.com/products/docker) to deploy the application.
+- Install [Docker](https://docs.docker.com/engine/installation)
+
 
 ## Installation
 - Preferably from a UNIX based OS run the install.sh script. 
