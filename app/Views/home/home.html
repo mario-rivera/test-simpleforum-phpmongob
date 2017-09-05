@@ -1,0 +1,48 @@
+{% extends "layouts/master.html" %}
+
+{% block content %}
+    <!-- Page Content -->
+    <div class="container">
+        <!-- Jumbotron Header -->
+        <header class="jumbotron hero-spacer">
+            {% if auth.isUserloggedIn() == true %}
+                <h1>Hello {{ app.get('AuthenticatedUser').name }}!</h1>
+            {% else %}
+                <h1>Hello Guest!</h1>
+            {% endif %}
+        </header>
+    </div>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-info" role="alert">
+                    There are <strong>{{ threads.count }}</strong> threads.
+                </div>
+            </div>
+        </div>
+
+        {% if auth.isUserloggedIn() == true %}
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="btn-toolbar" role="toolbar" aria-label="...">
+                        <div class="btn-group" role="group" aria-label="...">
+                            <a class="btn btn-primary" href="/threads/new" role="button">Create new Thread</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        <div class="row">
+            <div class="col-md-12">
+                {% for thread in threads %}
+                    <div class="list-group" style="margin-top: 20px;">
+                        <a href="/threads/{{ thread.getId }}" class="list-group-item">{{ thread.title }}</a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

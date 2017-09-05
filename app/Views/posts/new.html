@@ -1,0 +1,41 @@
+{% extends "layouts/master.html" %}
+
+{% block content %}
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                {% if validation_messages is defined %}
+                    <div class="alert alert-danger" role="alert">
+                        <ul>
+                            {% for message in validation_messages %}
+                                <li>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% elseif error_message is defined %}
+                    <div class="alert alert-danger" role="alert">{{ error_message }}</div>
+                {% endif %}
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                         <h3 class="panel-title">New Comment</h3>
+                    </div>
+                    
+                    <div class="panel-body">
+                        <form method="POST" action="/posts/new?thread={{ thread_id }}">
+                            <div class="form-group">
+                                <label for="">Content</label>
+                                <textarea class="form-control" rows="10" name="content">{{ data['content'] }}</textarea>
+                            </div>
+                            
+                            <input type="hidden" name="thread_id" value="{{ thread_id }}">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+{% endblock %}
